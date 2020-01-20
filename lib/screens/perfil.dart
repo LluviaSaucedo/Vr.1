@@ -11,7 +11,6 @@ class Perfil extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-              
                 Container(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Text(
@@ -30,7 +29,6 @@ class Perfil extends StatelessWidget {
               ],
             ),
           ),
-      
           Icon(
             Icons.star,
             color: Colors.teal[500],
@@ -40,7 +38,7 @@ class Perfil extends StatelessWidget {
       ),
     );
 
-    Color color = Theme.of(context).primaryColor;
+    Color color = Colors.red[200];
 
     Widget buttonSection = Container(
       child: Row(
@@ -61,19 +59,15 @@ class Perfil extends StatelessWidget {
       ),
     );
 
-    return MaterialApp(
-      home: Scaffold(
-        body: ListView(
+    return  ListView(
           children: [
             Image.network(
-            'https://www.worldarcherycolombia.com/img/uploads/Captura2.JPG' ),
+            'https://qph.fs.quoracdn.net/main-thumb-821792973-200-yheegalebnkwqmattghtldlabborygtu.jpeg'),
             titleSection,
             buttonSection,
             textSection,
           ],
-        ),
-      ),
-    );
+      );
   }
 
   Column _buildButtonColumn(Color color, IconData icon, String label) {
