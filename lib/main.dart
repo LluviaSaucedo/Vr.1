@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:socialty/home.dart';
 
+
 void main() => runApp(App());
 
 class App extends StatelessWidget {

@@ -1,47 +1,110 @@
 import 'package:flutter/material.dart';
 import 'screens/perfil.dart';
 import 'screens/spots.dart';
-import 'screens/explorar.dart';
 
 class Home extends StatefulWidget {
-  State<StatefulWidget> createState() => _HomeState();
+  @override
+  _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  int _selectedIndex = 0;
-  final _widgetOptions = [
-    Explorar(),
+  int currentTab = 0; 
+  final List<Widget> screens = [
     Spots(),
     Perfil(),
   ];
+  final PageStorageBucket bucket = PageStorageBucket();
+  Widget currentScreen = Spots(); 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Socialty')),
-        body: _widgetOptions[_selectedIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _selectedIndex,
-          onTap: (int index) {
-            setState(() {
-              _selectedIndex = index;
-            });
-          },
-          fixedColor: Colors.red[300],
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              title: Text('Explorar'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.bubble_chart),
-              title: Text("Spot's"),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle),
-              title: Text('Mi Perfil'),
-            )
-          ],
-        ));
+      appBar: AppBar(title: Text('Socialty')),
+      body: PageStorage(
+        child: currentScreen,
+        bucket: bucket,
+      ),
+      floatingActionButton: FloatingActionButton(
+        tooltip: 'Captura un video',
+        child: Icon(Icons.add),
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.blue[100],
+        onPressed: () {},
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        notchMargin: 10,
+        child: Container(
+          height: 50,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  MaterialButton(
+                    minWidth: 40,
+                    onPressed: () {
+                      setState(() {
+                        currentScreen =
+                            Spots(); 
+                        currentTab = 0;
+                      });
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          Icons.bubble_chart,
+                          color: currentTab == 0 ? Colors.red[300] : Colors.grey,
+                        ),
+                        Text(
+                          "Spot's",
+                          style: TextStyle(
+                            color: currentTab == 0 ? Colors.black : Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  MaterialButton(
+                    minWidth: 40,
+                    onPressed: () {
+                      setState(() {
+                        currentScreen =
+                            Perfil(); 
+                        currentTab = 2;
+                      });
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          Icons.account_circle,
+                          color: currentTab == 2 ? Colors.red[300] : Colors.grey,
+                        ),
+                        Text(
+                          'Profile',
+                          style: TextStyle(
+                            color: currentTab == 2 ? Colors.black : Colors.grey,
+                           ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
