@@ -26,9 +26,9 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButton: FloatingActionButton(
         tooltip: 'Captura un video',
-        child: Icon(Icons.add),
+        child: Icon(Icons.add, size: 35,),
         foregroundColor: Colors.white,
-        backgroundColor: Colors.blue[100],
+        backgroundColor: Colors.red[100],
         onPressed: () {},
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -40,11 +40,10 @@ class _HomeState extends State<Home> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(            
                 children: <Widget>[
                   MaterialButton(
-                    minWidth: 40,
+                    minWidth: 50,
                     onPressed: () {
                       setState(() {
                         currentScreen =
@@ -72,7 +71,6 @@ class _HomeState extends State<Home> {
               ),
             
               Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   MaterialButton(
                     minWidth: 40,

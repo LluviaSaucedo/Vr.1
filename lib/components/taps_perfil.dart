@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../screens/explorar.dart';
+
 import '../screens/spots.dart';
 import '../screens/perfil.dart';
 
@@ -8,51 +8,58 @@ class Taps extends StatefulWidget {
 }
 
 class _TapsState extends State<Taps> {
-  int _selectedIndex = 0;
-
-  final _widgetOptions = [
-    Explorar(),
+  int currentTab = 0;
+  final List<Widget> screens = [
     Spots(),
     Perfil(),
   ];
+  final PageStorageBucket bucket = PageStorageBucket();
+  Widget currentScreen = Spots();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Socialty')),
-      body: _widgetOptions[_selectedIndex],
-      
-      bottomNavigationBar: BottomAppBar(    
-
-        shape: const CircularNotchedRectangle(),
-        child: new Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            
-            IconButton(
-              icon: Icon(Icons.bubble_chart),
-              color: Colors.red[300],
-              tooltip: "Spot\'s",
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: Icon(Icons.account_circle),
-              color: Colors.red[300],
-              tooltip: "Perfil",
-              onPressed: () {},
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => setState(() {}),
-        tooltip: 'Increment Counter',
-        child: Icon(Icons.add),
-        foregroundColor: Colors.blue[300],
-        backgroundColor: Colors.white,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-    );
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              FlatButton(
+                padding: EdgeInsets.only(left:60.00, right:60,),
+                onPressed: null,
+                child: Text("Mis Spot's",
+                    style: TextStyle(
+                      color: Colors.red[200],
+                    )),
+                textColor: Colors.black,
+                
+                shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                        color: Colors.red[200],
+                        width: 1,
+                        style: BorderStyle.solid),
+                    borderRadius: BorderRadius.circular(10)),
+              )
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              FlatButton(
+                padding: EdgeInsets.only(left:50, right:50,),
+                onPressed: null,
+                child: Text("Peculiaridad",
+                    style: TextStyle(
+                      color: Colors.red[200],
+                    )),
+                textColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                        color: Colors.red[200],
+                        width: 1,
+                        style: BorderStyle.solid),
+                    borderRadius: BorderRadius.circular(10)),
+              )
+            ],
+          )
+        ]);
   }
 }

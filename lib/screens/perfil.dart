@@ -14,6 +14,7 @@ class Perfil extends StatelessWidget {
               'https://i.pinimg.com/564x/9b/25/dc/9b25dc32b223e763c3b2c5a58f84cc93.jpg',
           userName: 'Emma',
         ),
+        Taps()
       ],
     );
   }
