@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:socialty/components/camara.dart';
 import 'screens/perfil.dart';
 import 'screens/spots.dart';
 
@@ -29,7 +30,12 @@ class _HomeState extends State<Home> {
         child: Icon(Icons.add, size: 35,),
         foregroundColor: Colors.white,
         backgroundColor: Colors.red[100],
-        onPressed: () {},
+        onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => OpenCamera()),
+            );
+          },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
@@ -105,4 +111,8 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
+
+
+
 }

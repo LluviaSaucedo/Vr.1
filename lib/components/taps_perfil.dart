@@ -5,17 +5,46 @@ class Taps extends StatefulWidget {
 }
 
 class _TapsState extends State<Taps> {
+   int currentTab = 0; 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
-      child: TabBar(
-        tabs: [
-          Tab(text: "Mis Spot's",icon: Icon(Icons.art_track)), 
-          Tab(text: 'Insignias',icon: Icon(Icons.star_border)),
-        ],
-        indicatorColor: Colors.red[200]
-      ),
+        length: 2,
+        child: new Scaffold(
+          floatingActionButton: BottomAppBar(
+            child: TabBar(
+              tabs: [
+                Tab(
+                icon: Icon(Icons.school),
+              ),
+                Tab(
+                icon: Icon(Icons.home),
+              ),
+              ])
+              ),
+          body: TabBarView(children: [
+            new Container(
+              height: 100,
+              color: Colors.redAccent,
+              child: Center(
+                child: Text(
+                  'Hi from School',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+            new Container(
+              color: Colors.greenAccent,
+              child: Center(
+                child: Text(
+                  'Hi from home',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ]
+         ),
+       )
     );
   }
 }

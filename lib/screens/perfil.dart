@@ -1,27 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:socialty/components/taps_perfil.dart';
 
 class Perfil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        Header(
-          backgroundAsset:
-              'https://i.pinimg.com/564x/e8/dc/d5/e8dcd5c90e9b4ab64ee01e12f25a2ba5.jpg',
-          userAsset:
-              'https://i.pinimg.com/564x/9b/25/dc/9b25dc32b223e763c3b2c5a58f84cc93.jpg',
-          userName: 'Emma',
-        ),
-        Taps()
-      ],
+    return Scaffold(
+      body: SizedBox(
+          height: 150,
+       
+          child: Stack(children: <Widget>[
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+             
+              children: <Widget>[
+                Container(
+                  height: 150,
+                  child: Header(
+                    backgroundAsset:
+                        'https://i.pinimg.com/564x/e8/dc/d5/e8dcd5c90e9b4ab64ee01e12f25a2ba5.jpg',
+                    userAsset:
+                        'https://i.pinimg.com/564x/9b/25/dc/9b25dc32b223e763c3b2c5a58f84cc93.jpg',
+                    userName: 'Emma',
+                  ),
+                ),
+              ],
+            )
+          ]
+        )
+      ),
     );
   }
 }
 
 class Header extends StatelessWidget {
   final double height;
+  final double width;
   final String backgroundAsset;
   final String userAsset;
   final String userName;
@@ -29,6 +41,7 @@ class Header extends StatelessWidget {
   const Header({
     Key key,
     this.height = 150,
+    this.width = 10,
     @required this.backgroundAsset,
     @required this.userAsset,
     @required this.userName,
@@ -38,6 +51,7 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: this.height,
+      width: this.width,
       decoration: BoxDecoration(
           image: DecorationImage(
               image: NetworkImage(this.backgroundAsset), fit: BoxFit.cover)),
@@ -65,7 +79,7 @@ class UserPhoto extends StatelessWidget {
   const UserPhoto({
     Key key,
     @required this.assetImage,
-    this.size = 100,
+    this.size = 10,
   }) : super(key: key);
 
   @override
