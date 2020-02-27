@@ -10,25 +10,25 @@ class _CameraSrate extends State<OpenCamera> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Crea un Video"),
+        title: Text("Gía de Crear un Video"),
       ),
       body: Center(
         child: RaisedButton(
           onPressed: _optionsDialogBox,
-          child: Text('Regresemos!'),
+          child: Text('No volver a repetir!'),
         ),
       ),
     );
   }
 
-  void _openCamera() {
-    var picture = ImagePicker.pickVideo(
-      source: ImageSource.camera,
-    );
-  }
+  //void _openCamera() {
+  //  var picture = ImagePicker.pickVideo(
+  //    source: ImageSource.camera,
+  //  );
+  //}
 
   void _openVideo() {
-    var picture = ImagePicker.pickImage(
+    var picture = ImagePicker.pickVideo(
       source: ImageSource.camera,
     );
   }
@@ -41,13 +41,6 @@ class _CameraSrate extends State<OpenCamera> {
             content: new SingleChildScrollView(
               child: new ListBody(
                 children: <Widget>[
-                  GestureDetector(
-                    child: new Text('Captura un video'),
-                    onTap: _openCamera,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(15.0),
-                  ),
                   GestureDetector(
                     child: new Text('Captura una foto'),
                     onTap: _openVideo,
