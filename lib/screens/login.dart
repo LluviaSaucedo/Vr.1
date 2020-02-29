@@ -7,7 +7,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0, color: Colors.white,);
+  TextStyle style = TextStyle(fontSize: 20.0, color: Colors.white,);
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +15,11 @@ class _LoginState extends State<Login> {
       obscureText: false,
       style: style,
       decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Nombre",
           fillColor: Colors.white,
           border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+              OutlineInputBorder(borderRadius: BorderRadius.circular(100))),
     );
     final passwordField = TextField(
       obscureText: true,
@@ -29,10 +29,10 @@ class _LoginState extends State<Login> {
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Password",
           border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+              OutlineInputBorder(borderRadius: BorderRadius.circular(100))),
     );
     final loginButon = Material(
-      elevation: 5.0,
+      elevation: 50.0,
       borderRadius: BorderRadius.circular(30.0),
       color: Colors.blue[200],
       child: MaterialButton(
@@ -65,7 +65,7 @@ class _LoginState extends State<Login> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-                SizedBox(height: 45 ),
+                SizedBox(height: 170),
                 emailField,
                 SizedBox(height: 35),
                 passwordField,
