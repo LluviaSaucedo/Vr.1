@@ -12,9 +12,7 @@ class App extends StatelessWidget {
       title: 'Barra de navegacion',
       initialRoute: '/',
       routes: {
-        // Cuando naveguemos hacia la ruta "/", crearemos el Widget FirstScreen
         '/': (context) => Login(),
-        // Cuando naveguemos hacia la ruta "/second", crearemos el Widget SecondScreen
         '/second': (context) => Home(),
       },
        theme: ThemeData(

@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -6,6 +9,32 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+
+  String numero = "";
+  String firstName = "";
+  String password = "";
+
+    Future postUsers() async {
+    var url = 'http://192.168.100.15:3000/api/user/create';
+    Map user = {
+      'firstName': 'Louisa',
+      'lastName': 'Martinez',
+      'avatar':
+          'https://i.pinimg.com/564x/9b/25/dc/9b25dc32b223e763c3b2c5a58f84cc93.jpg'
+    };
+    var body = json.encode(user);
+    var response = await http.post(url, headers: {"Content-Type": "application/json"}, body: body);
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    return response;
+  }
+
+    @override
+  void initState() {
+    super.initState();    
+   // postUsers();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,10 +50,10 @@ class _LoginState extends State<Login> {
               colorBlendMode: BlendMode.darken),
           new Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(right: 225, top: 180),
+                padding: const EdgeInsets.only(right: 225,),
                 child: Text(
                   "Nombre",
                   style: TextStyle(color: Colors.white, fontSize: 22.0),
@@ -58,11 +87,70 @@ class _LoginState extends State<Login> {
                     ),
                     new Expanded(
                       child: TextField(
+                        style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Enter your name',
+                          hintText: 'Ingrese su nombre',
                           hintStyle: TextStyle(color: Colors.white),
                         ),
+                        onSubmitted: (String str){
+                          setState(() {
+                            firstName = str;
+                            debugPrint('firstName: $firstName');
+                          });
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 225,),
+                child: Text(
+                  "Telefono",
+                  style: TextStyle(color: Colors.white, fontSize: 22.0),
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.white.withOpacity(0.5),
+                    width: 2.0,
+                  ),
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                margin: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 20.0),
+                child: Row(
+                  children: <Widget>[
+                    new Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 15.0),
+                      child: Icon(
+                        Icons.call,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Container(
+                      height: 30.0,
+                      width: 1.0,
+                      color: Colors.white.withOpacity(0.5),
+                      margin: const EdgeInsets.only(left: 00.0, right: 10.0),
+                    ),
+                    new Expanded(
+                      child: TextField(
+                        style: TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Ingrese su número telefonico',
+                          hintStyle: TextStyle(color: Colors.white),
+                        ),
+                         onSubmitted: (String str){
+                          setState(() {
+                            numero = str;
+                            debugPrint('numero: $numero');
+                          });
+                        },
                       ),
                     )
                   ],
@@ -106,12 +194,19 @@ class _LoginState extends State<Login> {
                     ),
                     new Expanded(
                       child: TextField(
+                        style: TextStyle(color: Colors.white),
                         obscureText: true,
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Enter your password',
+                          hintText: 'Ingese su password',
                           hintStyle: TextStyle(color: Colors.white),
                         ),
+                          onSubmitted: (String str){
+                          setState(() {
+                            password = str;
+                            debugPrint('password: $password');
+                          });
+                        },
                       ),
                     )
                   ],
@@ -171,6 +266,30 @@ class _LoginState extends State<Login> {
                   ],
                 ),
               ),
+              Container(
+            margin: const EdgeInsets.only(top: 20.0),
+            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            child: new Row(
+              children: <Widget>[
+                new Expanded(
+                  child: FlatButton(
+                    shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(30.0)),
+                    color: Colors.transparent,
+                    child: Container(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      alignment: Alignment.center,
+                      child: Text(
+                        "DO YOU ALREADY HAVE AN ACCOUNT?",
+                        style: TextStyle(color: Colors.white ),
+                      ),
+                    ),
+                    onPressed: () => {},
+                  ),
+                ),
+              ],
+            ),
+          ),
             ],
           ),
         ],

@@ -6,11 +6,9 @@ class Perfil extends StatelessWidget {
     return Scaffold(
       body: SizedBox(
           height: 150,
-       
           child: Stack(children: <Widget>[
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-             
               children: <Widget>[
                 Container(
                   height: 150,
@@ -24,9 +22,7 @@ class Perfil extends StatelessWidget {
                 ),
               ],
             )
-          ]
-        )
-      ),
+          ])),
     );
   }
 }

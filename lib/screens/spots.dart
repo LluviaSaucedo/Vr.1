@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'dart:async';
 
 class Spots extends StatefulWidget {
   Spots({Key key}) : super(key: key);
@@ -22,6 +21,7 @@ class _SpotsState extends State<Spots> {
     });
   }
 
+  //  debugPrint()
   @override
   void initState() {
     super.initState();
@@ -39,16 +39,17 @@ class _SpotsState extends State<Spots> {
               padding: const EdgeInsets.all(20.0),
               child: Row(
                 children: <Widget>[
-                  
                   CircleAvatar(
                     backgroundImage: NetworkImage(usersData[index]['avatar']),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: Text("${usersData[index]['firstName']} ${usersData[index]['lastName']}",
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),),
+                    child: Text(
+                      "${usersData[index]['firstName']} ${usersData[index]['lastName']}",
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
                   ),
                 ],
               ),
