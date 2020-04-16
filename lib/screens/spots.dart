@@ -14,7 +14,7 @@ class _SpotsState extends State<Spots> {
 
   getUsers() async {
     http.Response response =
-        await http.get('http://192.168.100.15:3000/api/users');
+        await http.get('http://127.0.0.1:3000/api/users');
     data = json.decode(response.body);
     setState(() {
       usersData = data['users'];

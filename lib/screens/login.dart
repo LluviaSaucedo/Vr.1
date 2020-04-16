@@ -9,51 +9,52 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-
   String numero = "";
   String firstName = "";
   String password = "";
 
-    Future postUsers() async {
-    var url = 'http://192.168.100.15:3000/api/user/create';
+  Future postUsers() async {
+    var url = '192.168.1.77:3000/api/user/create';
     Map user = {
-      'firstName': 'Louisa',
-      'lastName': 'Martinez',
+      'firstName': firstName,
+      'lastName': numero,
       'avatar':
           'https://i.pinimg.com/564x/9b/25/dc/9b25dc32b223e763c3b2c5a58f84cc93.jpg'
     };
     var body = json.encode(user);
-    var response = await http.post(url, headers: {"Content-Type": "application/json"}, body: body);
+    var response = await http.post(url,
+        headers: {"Content-Type": "application/json"}, body: body);
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
     return response;
   }
 
-    @override
+  @override
   void initState() {
-    super.initState();    
-   // postUsers();
+    super.initState();
+    // postUsers();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
-      backgroundColor: Colors.blue[100],
+      backgroundColor: Colors.white,
       body: new Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          new Image.network(
-              "https://i.pinimg.com/564x/2a/1b/49/2a1b49b47e439be6d9f1103ad01f3243.jpg",
-              fit: BoxFit.cover,
-              color: Colors.blue[50],
-              colorBlendMode: BlendMode.darken),
+          new Image.asset(
+            'assets/LoginSCLTY.jpg',
+            fit: BoxFit.cover,
+          ),
           new Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(right: 225,),
+                padding: const EdgeInsets.only(
+                  right: 225,
+                ),
                 child: Text(
                   "Nombre",
                   style: TextStyle(color: Colors.white, fontSize: 22.0),
@@ -93,7 +94,7 @@ class _LoginState extends State<Login> {
                           hintText: 'Ingrese su nombre',
                           hintStyle: TextStyle(color: Colors.white),
                         ),
-                        onSubmitted: (String str){
+                        onSubmitted: (String str) {
                           setState(() {
                             firstName = str;
                             debugPrint('firstName: $firstName');
@@ -105,7 +106,9 @@ class _LoginState extends State<Login> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 225,),
+                padding: const EdgeInsets.only(
+                  right: 225,
+                ),
                 child: Text(
                   "Telefono",
                   style: TextStyle(color: Colors.white, fontSize: 22.0),
@@ -145,7 +148,7 @@ class _LoginState extends State<Login> {
                           hintText: 'Ingrese su número telefonico',
                           hintStyle: TextStyle(color: Colors.white),
                         ),
-                         onSubmitted: (String str){
+                        onSubmitted: (String str) {
                           setState(() {
                             numero = str;
                             debugPrint('numero: $numero');
@@ -201,7 +204,7 @@ class _LoginState extends State<Login> {
                           hintText: 'Ingese su password',
                           hintStyle: TextStyle(color: Colors.white),
                         ),
-                          onSubmitted: (String str){
+                        onSubmitted: (String str) {
                           setState(() {
                             password = str;
                             debugPrint('password: $password');
@@ -222,7 +225,7 @@ class _LoginState extends State<Login> {
                         shape: new RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(30.0)),
                         splashColor: null,
-                        color: Colors.blue,
+                        color: Colors.purple[900],
                         child: new Row(
                           children: <Widget>[
                             new Padding(
@@ -247,9 +250,10 @@ class _LoginState extends State<Login> {
                                   color: Colors.white,
                                   child: Icon(
                                     Icons.arrow_forward,
-                                    color: Colors.blue,
+                                    color: Colors.pink[200],
                                   ),
                                   onPressed: () {
+                                    // postUsers();
                                     Navigator.pushNamed(context, '/second');
                                   },
                                 ),
@@ -257,9 +261,10 @@ class _LoginState extends State<Login> {
                             )
                           ],
                         ),
-                        //este es el que hace que ya no regrese al login 
+                        //este es el que hace que ya no regrese al login
                         onPressed: () {
-                          Navigator.of(context).pushNamedAndRemoveUntil('/second', (Route<dynamic> route) => false);
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                              '/second', (Route<dynamic> route) => false);
                         },
                       ),
                     ),
@@ -267,29 +272,29 @@ class _LoginState extends State<Login> {
                 ),
               ),
               Container(
-            margin: const EdgeInsets.only(top: 20.0),
-            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-            child: new Row(
-              children: <Widget>[
-                new Expanded(
-                  child: FlatButton(
-                    shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0)),
-                    color: Colors.transparent,
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      alignment: Alignment.center,
-                      child: Text(
-                        "DO YOU ALREADY HAVE AN ACCOUNT?",
-                        style: TextStyle(color: Colors.white ),
+                margin: const EdgeInsets.only(top: 20.0),
+                padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                child: new Row(
+                  children: <Widget>[
+                    new Expanded(
+                      child: FlatButton(
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(30.0)),
+                        color: Colors.transparent,
+                        child: Container(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          alignment: Alignment.center,
+                          child: Text(
+                            "DO YOU ALREADY HAVE AN ACCOUNT?",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        onPressed: () => {},
                       ),
                     ),
-                    onPressed: () => {},
-                  ),
+                  ],
                 ),
-              ],
-            ),
-          ),
+              ),
             ],
           ),
         ],
